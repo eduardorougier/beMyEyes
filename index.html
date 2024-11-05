@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Eyes - Connecting Vision</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            color: #333;
+        }
+
+        header {
+            background-color: #2196F3;
+            background-image: url("fondoHeader.jpg");
+
+            background-size: 100%;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 18rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(33, 150, 243, 0.8), rgba(21, 101, 192, 0.8));
+            z-index: 0;
+        }
+
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            background-color: #1565C0;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        nav ul li a:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 60px 0;
+            transition: background-color 0.3s;
+        }
+
+        .section:hover {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h2 {
+            color: #1565C0;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #1565C0;
+            transition: width 0.3s;
+        }
+
+        .section:hover h2::after {
+            width: 100%;
+        }
+
+        .feature-box {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: center;
+            transition: transform 0.3s;
+
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-box img {
+            margin-right: 20px;
+            border-radius: 7px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 360px;
+        }
+
+        .testimony-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .testimony-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex-basis: 30%;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .step img {
+            max-width: 320px;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #1565C0;
+            outline: none;
+        }
+
+        .btn {
+            background-color: #1565C0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background-color: #1565C0;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        #statistics {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #1565C0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Be My Eyes</h1>
+        <p>Connecting visually impaired individuals with sighted volunteers</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#creation">Creation</a></li>
+            <li><a href="#mission">Our Mission</a></li>
+            <li><a href="#testimony">Testimony</a></li>
+            <li><a href="#how-to">How to Use</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    <section id="about" class="section">
+        <div class="container">
+            <h2>About Us</h2>
+            <div id="statistics">
+                <div class="stat-box">
+                    <div class="stat-number" id="volunteerCount">0</div>
+                    <p>Volunteers</p>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="userCount">0</div>
+                    <p>Visually Impaired Users</p>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="countryCount">0</div>
+                    <p>Countries</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <img src="https://play-lh.googleusercontent.com/5LJ95Ji4ZjKcV4zXNhTnmc-Gl0smFmNBWtY5dk-0UH7nY7mQn4wNPBO3NPNg9RYasC8"
+                    alt="Be My Eyes app interface">
+                <div>
+                    <p>At Be My Eyes, our mission is to help people who are blind or have low vision by connecting them
+                        with compassionate and dedicated volunteers. We believe that everyone deserves to feel supported
+                        and empowered to handle everyday tasks independently. Our goal is to create an environment where
+                        every user feels valued and capable of overcoming the challenges they face with the help of
+                        others
+                        What We Offer:
+                    </p>
+                    <ul>
+                        <li> Instant Help: Through our platform, users can connect with volunteers via live video calls.
+                            This allows them to receive quick assistance with everyday tasks like reading labels,
+                            identifying objects, or navigating their surroundings. The speed and efficiency of our help
+                            are key in fostering independence for our users.</li>
+
+                        <li> A Global Community: With thousands of volunteers from all around the world, we’ve built a
+                            vibrant and supportive community. Our volunteers are passionate individuals eager to give
+                            their time and skills to help others. This cultural and geographic diversity enriches our
+                            community, fostering a sense of unity and empathy among all participants.</li>
+
+                        <li> Easy-to-Use App: We take pride in offering an app that’s simple and intuitive. Every aspect
+                            of the app, from its design to its functionality, is crafted so that anyone—regardless of
+                            technical expertise—can easily request help or offer support. We want technology to be a
+                            bridge, not a barrier.</li>
+
+
+                        <h2> Join us in making a difference one connection at a time!! </h2>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="creation" class="section" style="background-color: #f5f5f5;">
+        <div class="container">
+            <h2>Creation of Be My Eyes</h2>
+            <div class="feature-box">
+                <div>
+                    <p>Be My Eyes is a free mobile app that helps make the world more accessible for blind and
+                        low-vision individuals. Launched in January 2015, the app connects users with over 6 million
+                        sighted volunteers worldwide through live video calls. Users can request help in more than 180
+                        languages, making it the largest online community for blind and low-vision people.
+                        The idea for Be My Eyes came from<strong> Hans Jørgen Wiberg</strong>, a visually impaired
+                        furniture craftsman in Denmark. He realized that video calls could connect blind individuals
+                        with volunteers who could assist them with everyday tasks. The app quickly gained popularity,
+                        reaching over 10,000 users within 24 hours of its launch.
+                    </p>
+                    <p> He created a revolutionary mobile app that connects users with volunteers through video calls.
+                        This innovative approach allows users to receive immediate assistance for various tasks, while
+                        volunteers can offer their support from anywhere in the world. Since its inception, Be My Eyes
+                        has rapidly grown, driven by a commitment to community and the belief that everyone deserves the
+                        opportunity to live independently.</p>
+                </div>
+                <img src="https://cdn.prod.website-files.com/5a5de2c1a0eb5000019e4dc0/63f34479950c482ff1ff7f32_Mike.png"
+                    alt="Be My Eyes founder">
+            </div>
+        </div>
+    </section>
+
+    <section id="mission" class="section">
+        <div class="container">
+            <h2>Our Mission</h2>
+            <div class="feature-box">
+                <img src="mission.jpg" alt="Our Mission"">   
+                <div>
+                    <p>Our mission is to make the world more accessible for blind and low-vision people. Through the power of technology and human connection, we aim to:</p>
+                    <ul>
+                        
+                        <li>Promote independence for visually impaired individuals: Enabling users to navigate their world with greater confidence and ease.</li>
+                        <li>Create a global community of helpers: Connecting those in need with volunteers who provide compassionate visual assistance.</li>
+                        <li>Break down barriers and foster understanding: Building empathy and inclusivity through meaningful human connections.</li>
+                        <li>Harness technology for social good: Innovating to ensure accessibility and support are always within reach.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id=" testimony" class="section" style="background-color: #f5f5f5;">
+                <div class="container">
+                    <h2>Testimonies</h2>
+                    <div class="testimony-card">
+                        <h3>Testimonial from a Helper</h3>
+                        <p>"Being a part of Be My Eyes has been one of the most rewarding experiences of my life.
+                            Helping someone see the world, even if just through a video call, brings me joy and
+                            fulfillment. I love that I can make a difference in someone’s day with just a few minutes of
+                            my time. It’s a reminder that small acts of kindness can create significant impacts. I
+                            encourage everyone to join this wonderful community!" - Sarah M, Volunteer</p>
+                    </div>
+                    <div class="testimony-card">
+                        <h3>Testimonial from a User</h3>
+                        <p>"As someone who has been visually impaired for years, I can't express how much Be My Eyes has
+                            changed my life. The ability to connect with someone who can help me read labels or navigate
+                            unfamiliar places is invaluable. It gives me a sense of independence and reassurance that
+                            I’m not alone. The volunteers are compassionate and understanding, making every interaction
+                            a positive one. I’m grateful for this incredible service!" - James T, User</p>
+                    </div>
+                </div>
+    </section>
+
+    <section id="how-to" class="section">
+        <div class="container">
+            <h2>How to Use Be My Eyes</h2>
+            <div class="steps">
+                <div class="step">
+                    <img src="https://static.vecteezy.com/system/resources/thumbnails/029/920/409/small/download-page-of-the-mobile-app-empty-screen-smartphone-for-you-app-download-app-stock-illustration-vector.jpg"
+                        alt="Step 1">
+                    <h3>1. Download the App</h3>
+                    <p>Get the Be My Eyes app from the App Store or Google Play. It's free and available to both users
+                        needing assistance and volunteers ready to help.</p>
+                </div>
+                <div class="step">
+                    <img src=image.jpg alt="Step 2">
+                    <h3>2. Register Your Profile</h3>
+                    <p>Sign up as either a visually impaired user or a volunteer. It only takes a minute, and it
+                        connects you to a global community instantly.</p>
+                </div>
+                <div class="step">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2_BnU7jsSWn-22dCL2H4I3CeAAE9We0yBvQ&s"
+                        alt="Step 3">
+                    <h3>3. Connect and Start Helping </h3>
+                    <p>Users can request help with a single tap, while volunteers will be notified when someone needs
+                        visual assistance. You’ll connect through a live video call to provide or receive help in real
+                        time.
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div id="successMessage" class="success-message">
+                    Thank you for your message! We'll get back to you soon.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy;Making the world more accessible together.</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            document.getElementById('successMessage').style.display = 'block';
+            this.reset();
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+
+        function animateNumber(elementId, final, duration) {
+            let start = 0;
+            const increment = final / (duration / 16);
+            const element = document.getElementById(elementId);
+            const timer = setInterval(() => {
+                start += increment;
+                element.textContent = Math.floor(start).toLocaleString();
+                if (start >= final) {
+                    element.textContent = final.toLocaleString();
+                    clearInterval(timer);
+                }
+            }, 16);
+        }
+
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'statistics') {
+                        animateNumber('volunteerCount', 4000000, 2000);
+                        animateNumber('userCount', 300000, 2000);
+                        animateNumber('countryCount', 150, 2000);
+                    }
+                    entry.target.classList.add('fade-in');
+                    entry.target.style.transition = 'opacity 1s, transform 1s';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {threshold: 0.1, rootMargin: '0px 0px -100px 0px'});
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            observer.observe(section);
+        });
+
+        observer.observe(document.getElementById('statistics'));
+
+
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrollPosition = window.pageYOffset;
+            hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        });
+
+        // Typed.js effect for hero text (make sure to include Typed.js library)
+        if (typeof Typed !== 'undefined') {
+            new Typed('#typed-text', {
+                strings: ['Professional', 'Reliable', 'Innovative'],
+                typeSpeed: 50,
+                backSpeed: 50,
+                loop: true
+            });
+        }
+
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.05)';
+                card.style.transition = 'transform 0.3s ease';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        if ('IntersectionObserver' in window) {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+
+        const darkModeToggle = document.createElement('button');
+        darkModeToggle.textContent = '🌓';
+        darkModeToggle.className = 'dark-mode-toggle';
+        document.body.appendChild(darkModeToggle);
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        });
+
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</body>
+
+</html>
